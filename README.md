@@ -41,8 +41,7 @@ For newer users, it's not always clear why these steps are required or what brea
 ## ❌ What Quoncierge does *not* do
 
 - It doesn't configure or manage Conda/Mamba environments (see [why venv](#why-venv-instead-of-condamamba)).
-- It doesn't create Quarto sites, presentations, or publish-ready documents (but you can add those later).
-- It doesn't manage multi-language Quarto documents (R + Python), though support for this is planned.
+- It doesn't manage multi-language Quarto documents (R + Python), though [support for this is planned](https://github.com/lkwhite/Quoncierge/issues/2).
 
 ## 🚀 Usage
 
