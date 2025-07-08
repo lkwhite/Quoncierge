@@ -3,7 +3,7 @@
 Automate initializing reproducible **Quarto + Jupyter + GitHub** projects.
 
 ## ⏩ TLDR Use
-Edit `setup.sh` to add your GitHub details. Run `bash setup.sh <project-name>`, and get to coding in Positron!
+Edit `setup.sh` to add your GitHub details. Then run `bash setup.sh <project-name>`, and get to coding in Positron!
 
 ## 🧠 Motivation
 
