@@ -39,6 +39,30 @@ GITHUB_USERNAME="username"  # CHANGE this to your GitHub username
 GITHUB_EMAIL="youremail@institution.edu"  # CHANGE this to your GitHub-associated email
 OPEN_WITH_POSITRON=true  # Set to false to skip Positron launch
 
+# === CHECK FOR QUARTO CLI ===
+if ! command -v quarto &> /dev/null; then
+  echo "❌ Quarto CLI is not installed."
+  echo "👉 Install it from https://quarto.org/docs/get-started/"
+  echo "   • Mac (Homebrew): brew install --cask quarto"
+  echo "   • Windows (Chocolatey): choco install quarto"
+  echo "   • Linux: see install instructions on the Quarto site"
+  echo ""
+  echo "Once installed, re-run this script:"
+  echo "    bash setup.sh $PROJECT_NAME"
+  exit 1
+fi
+
+# === CORE PYTHON PACKAGES ===
+CORE_PACKAGES=(
+  numpy
+  pandas
+  matplotlib
+  seaborn
+  scikit-learn
+  scipy
+  biopython
+)
+
 # === CHECK FOR NAME ===
 if [ -z "$PROJECT_NAME" ]; then
   echo "Usage: bash setup.sh <project-name>"
@@ -59,8 +83,8 @@ source .venv/bin/activate
 
 # === INSTALL DEPENDENCIES ===
 pip install --upgrade pip
-pip install jupyter ipykernel quarto
-pip install numpy pandas matplotlib seaborn scikit-learn biopython scipy
+pip install jupyter ipykernel
+pip install "${CORE_PACKAGES[@]}"
 
 # === REGISTER PROJECT-LOCAL JUPYTER KERNEL ===
 python -m ipykernel install --name="$PROJECT_NAME" --display-name="Python ($PROJECT_NAME)" --prefix=".venv"
@@ -85,34 +109,54 @@ EOF
 cat <<EOF > README.md
 # $PROJECT_NAME
 
-This project was initialized using [Quoncierge](https://github.com/lkwhite/Quoncierge) \`setup.sh\`.
+📝 *This is a placeholder README. Replace this with a description of your project — what it does, what problem it solves, or what you're exploring.*
 
-## Getting started
+---
 
-To activate the Python environment:
+## Getting Started
+
+This project uses a self-contained Python environment in \`.venv\` and a Quarto configuration that includes all required settings for reproducible analysis.
+
+### 🔧 To activate the environment (only needed outside Positron):
 \`\`\`bash
 source .venv/bin/activate
 \`\`\`
 
-To open in Positron:
-\`\`\`bash
-positron .
-\`\`\`
-
-To run or preview Quarto documents:
-\`\`\`bash
-quarto preview
-\`\`\`
+---
 
 ## Python Environment
 
-Python packages were pinned at time of setup (see \`requirements.txt\`).  
-Install them with:
+The following core packages were installed at setup:
+EOF
+
+# Append core packages
+for pkg in "${CORE_PACKAGES[@]}"; do
+  echo "- \`$pkg\`" >> README.md
+done
+
+cat <<EOF >> README.md
+
+You can view the complete environment in [\`requirements.txt\`](requirements.txt).
+
+### 🧪 Installing more packages
+
+If you're working *outside* Positron (e.g., in the terminal):
 
 \`\`\`bash
-pip install -r requirements.txt
+source .venv/bin/activate
+pip install my-new-package
+pip freeze > requirements.txt  # optional, but keeps your environment reproducible
 \`\`\`
+
+> 💡 If you're using Positron, you can also install packages inside the built-in terminal, then restart the kernel if needed.
+
+---
+
+## About This Template
+
+This project was initialized using [**Quoncierge**](https://github.com/lkwhite/Quoncierge), a lightweight starter for Quarto projects in Positron.
 EOF
+
 
 # === FREEZE DEPENDENCIES ===
 pip freeze > requirements.txt
