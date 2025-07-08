@@ -52,8 +52,7 @@ You must have:
 - Quarto CLI installed (on MacOS: `brew install --cask quarto`; Windows & Linux folks [Quarto instructions here](https://quarto.org/docs/get-started/))
 - (Optional) Positron installed and in your `$PATH`
 
-💡 Tip: To launch the project in Positron from the command line, the positron command must be in your system PATH.
-You can add this from within Positron itself by opening the IDE, pressing `Cmd+Shift+P` (on Mac) or `Ctrl+Shift+P` (on Windows/Linux) to open the Command Palette. Type "Install Shell Command" and select Install the 'positron' command line tool. After running this, you should be able to launch projects from the terminal using `positron .`
+💡 Tip: To launch a project in Positron from the command line, the positron command must be in your system PATH. You can add this from within Positron itself by opening the IDE, pressing `Cmd+Shift+P` (on Mac) or `Ctrl+Shift+P` (on Windows/Linux) to open the Command Palette. Type "Install Shell Command" and select Install the 'positron' command line tool. After running this, you should be able to launch projects from the terminal using `positron .`
 
 Clone this repo:
 
@@ -83,12 +82,6 @@ Each project will contain:
 - `.quarto/` and `_quarto.yml` — Quarto project metadata
 - GitHub repository — auto-created with remote tracking set
 
-💡 If you install new packages, you can update the environment file with:
-
-```bash
-pip freeze > requirements.txt
-```
-
 ## 🧪 Example
 
 ```bash
@@ -104,9 +97,8 @@ You can edit `setup.sh` to:
 - Add or remove core Python packages
 - Make projects public instead of private
 - Customize the starting `.qmd`, README, or Quarto YAML
-- Change Git default branch from `master` to `main`
 
-If you add new Python packages during development, remember to update your environment with:
+💡 If you install new Python packages, you can update your environment with:
 
 ```bash
 pip freeze > requirements.txt
@@ -128,6 +120,7 @@ If you prefer `conda` or `mamba`, you're welcome to adapt the environment setup 
 Quoncierge is licensed under the [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) license. You’re free to share and adapt this work, even commercially, as long as you give appropriate credit.
 
 If you adapt or improve this script for your own workflows, feel free to open a pull request or share a link.
+
 Quoncierge is under active development as of July 2025, with the expectation that it may end up deprecated as Positron features continue to be built out. If you have a question or a comment, feel free to create an issue.
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15833439.svg)](https://doi.org/10.5281/zenodo.15833439)
