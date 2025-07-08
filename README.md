@@ -87,5 +87,10 @@ Creates a folder my-analysis-project/ with a working Quarto + Jupyter setup, pus
 
 Quoncierge is licensed under the [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) license. You’re free to share and adapt this work, even commercially, as long as you give appropriate credit.
 
-If you adapt or improve this script for your own workflows, feel free to open a pull request or share a link!
+If you adapt or improve this script for your own workflows, feel free to open a pull request or share a link.
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15833439.svg)](https://doi.org/10.5281/zenodo.15833439)
+
+This repository is archived on Zenodo. If you'd like to cite it, you can use the DOI above.
+
 
