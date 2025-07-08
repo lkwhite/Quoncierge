@@ -34,7 +34,7 @@ Even though Python + Jupyter + Quarto are all widely used, getting them to work 
 - Quarto projects aren't automatically Git-tracked or linked to GitHub; you need to set that up yourself.
 - IDEs like Positron currently don't infer all this context or register project-local Jupyter kernels automatically.
 
-For newer users, it's not always clear why these steps are required or what breaks when they’re skipped. Quoncierge wraps these tasks into one reproducible setup flow that's friendlier to the type of users I typically work with (busy scientists jumping between wet lab experiments and bioinformatics data analysis).
+For newer users, it's not always clear why these steps are required or what breaks when they’re skipped. Quoncierge wraps these tasks into one reproducible setup flow that's friendlier to the type of users I typically work with. Busy scientists jumping between wet lab experiments and bioinformatics data analysis do not want to add making sense of a kernel/environment/interpreter stack on top of their science. 
 
 ## 🚀 Usage
 
