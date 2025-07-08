@@ -41,6 +41,9 @@ You must have:
 - Quarto CLI installed (`brew install --cask quarto`)
 - (Optional) Positron installed and in your `$PATH`
 
+💡 Tip: To launch the project in Positron from the command line, the positron command must be in your system PATH.
+You can add this from within Positron itself by opening the IDE, pressing `Cmd+Shift+P` (on Mac) or `Ctrl+Shift+P` (on Windows/Linux) to open the Command Palette. Type "Install Shell Command" and select Install the 'positron' command line tool. After running this, you should be able to launch projects from the terminal using `positron .`
+
 Clone this repo:
 
 ```bash
