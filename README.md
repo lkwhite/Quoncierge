@@ -26,6 +26,11 @@ Quoncierge is a setup script that:
 - Initializes a Git repo, creates a GitHub repo, and pushes the first commit
 - (Optionally) launches the project in [Positron](https://posit-dev.github.io/positron/)
 
+## ❌ What Quoncierge does *not* do
+
+- It doesn't configure or manage Conda/Mamba environments (see [why venv](#why-venv-instead-of-condamamba)).
+- It doesn't manage multi-language Quarto documents (R + Python), though [support for this is planned](https://github.com/lkwhite/Quoncierge/issues/2).
+
 ## ⚠️ Why setup can be confusing
 
 Even though Python + Jupyter + Quarto are all widely used, getting them to work *together* in a reproducible way still takes several manual steps:
@@ -37,11 +42,6 @@ Even though Python + Jupyter + Quarto are all widely used, getting them to work 
 - IDEs like Positron currently don't infer all this context or register project-local Jupyter kernels automatically.
 
 For newer users, it's not always clear why these steps are required or what breaks when they’re skipped. Quoncierge wraps these tasks into one reproducible setup flow that's friendlier to the type of users I typically work with, who do not want to add making sense of a kernel/environment/interpreter stack to their to-do list. 
-
-## ❌ What Quoncierge does *not* do
-
-- It doesn't configure or manage Conda/Mamba environments (see [why venv](#why-venv-instead-of-condamamba)).
-- It doesn't manage multi-language Quarto documents (R + Python), though [support for this is planned](https://github.com/lkwhite/Quoncierge/issues/2).
 
 ## 🚀 Usage
 
