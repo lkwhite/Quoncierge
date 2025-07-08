@@ -83,7 +83,7 @@ bash setup.sh my-analysis-project
 
 Creates a folder my-analysis-project/ with a working Quarto + Jupyter setup, pushes it to GitHub, and opens it in Positron (if installed and in $PATH).
 
-### 🤔Why venv instead of conda/mamba?
+## 🤔Why venv instead of conda/mamba?
 
 This project uses Python’s built-in [`venv`](https://docs.python.org/3/library/venv.html) for environment management to keep things simple, fast, and cross-platform with minimal setup friction. 
 
