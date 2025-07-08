@@ -4,9 +4,9 @@ Automate initializing reproducible **Quarto + Jupyter + GitHub** projects.
 
 ## 🧠 Motivation
 
-I built Quoncierge after beta testing [Positron](https://posit-dev.github.io/positron/), the next-generation IDE from the creators of RStudio. While it supports running R and Python in the same notebook using `.qmd` files, I ran into frustrating limitations when trying to launch a new Quarto project that *just worked* with Jupyter and GitHub.
+I built Quoncierge after beta testing [Positron](https://posit-dev.github.io/positron/), the next-generation IDE from the creators of RStudio. While it supports running R and Python in the same notebook using `.qmd` files, I ran into frustrating limitations when trying to launch a new Quarto project that *just worked* without manual setup and troubleshooting.
 
-In particular, Positron currently lacks full support for `.qmd` notebooks ([see GitHub issue](https://github.com/posit-dev/positron/issues/5640)), and it doesn’t automatically recognize Python virtual environments, registered kernels, or GitHub repo settings. That left me (a wet-lab trained biologist doing increasingly complex bioinformatics) spending far too much time just setting things up.
+The current experience for setting up a new Python + Quarto project in Positron is fragmented. Quoncierge automates and smooths over the pain points of environment creation, kernel registration, and GitHub linkage — bringing .qmd notebooks closer to plug-and-play for bioinformatics and data science work.
 
 ## ⚙️ What it does
 
