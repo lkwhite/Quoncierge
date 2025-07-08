@@ -110,6 +110,7 @@ If you add new Python packages during development, remember to update your envir
 
 ```bash
 pip freeze > requirements.txt
+```
 
 ## 🤔Why venv instead of conda/mamba?
 
