@@ -3,6 +3,8 @@
 Automate initializing reproducible **Quarto + Jupyter + GitHub** projects with a simple script.
 
 ## ⏩ TLDR Use
+Quoncierge is aimed at users who want a lightweight, reproducible Python + Quarto setup with zero config — especially those transitioning from RStudio or `.Rmd` workflows to Positron and `.qmd` notebooks. It minimizes terminal steps so you can start coding right away.
+
 Edit `setup.sh` to add your GitHub details. Then run `bash setup.sh <project-name>`, and get to coding in Positron!
 
 ## 🧠 Motivation
@@ -11,7 +13,7 @@ I built Quoncierge after beta testing [Positron](https://posit-dev.github.io/pos
 
 The current experience for setting up a new Python + Quarto project in Positron is fragmented. Quoncierge automates and smooths over the pain points of environment creation, kernel registration, and GitHub linkage — bringing .qmd notebooks closer to plug-and-play for data science work, with bioinformatics users in mind.
 
-## ⚙️ What it does
+## ⚙️ What Quoncierge does
 
 Quoncierge is a setup script that:
 
@@ -35,6 +37,12 @@ Even though Python + Jupyter + Quarto are all widely used, getting them to work 
 - IDEs like Positron currently don't infer all this context or register project-local Jupyter kernels automatically.
 
 For newer users, it's not always clear why these steps are required or what breaks when they’re skipped. Quoncierge wraps these tasks into one reproducible setup flow that's friendlier to the type of users I typically work with, who do not want to add making sense of a kernel/environment/interpreter stack to their to-do list. 
+
+## ❌ What Quoncierge does *not* do
+
+- It doesn't configure or manage Conda/Mamba environments (see [why venv](#why-venv-instead-of-condamamba)).
+- It doesn't create Quarto sites, presentations, or publish-ready documents (but you can add those later).
+- It doesn't manage multi-language Quarto documents (R + Python), though support for this is planned.
 
 ## 🚀 Usage
 
@@ -88,6 +96,20 @@ bash setup.sh my-analysis-project
 ```
 
 Creates a folder my-analysis-project/ with a working Quarto + Jupyter setup, pushes it to GitHub, and opens it in Positron (if installed and in $PATH).
+
+## 🛠 Customizing Your Setup
+
+You can edit `setup.sh` to:
+
+- Add or remove core Python packages
+- Make projects public instead of private
+- Customize the starting `.qmd`, README, or Quarto YAML
+- Change Git default branch from `master` to `main`
+
+If you add new Python packages during development, remember to update your environment with:
+
+```bash
+pip freeze > requirements.txt
 
 ## 🤔Why venv instead of conda/mamba?
 
