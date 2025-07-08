@@ -83,6 +83,17 @@ bash setup.sh my-analysis-project
 
 Creates a folder my-analysis-project/ with a working Quarto + Jupyter setup, pushes it to GitHub, and opens it in Positron (if installed and in $PATH).
 
+### 🤔Why venv instead of conda/mamba?
+
+This project uses Python’s built-in [`venv`](https://docs.python.org/3/library/venv.html) for environment management to keep things simple, fast, and cross-platform with minimal setup friction. 
+
+- No need to install Conda or Mamba.
+- Works cleanly with Quarto and Python kernels without extra configuration.
+- Easier to manage in lightweight or CI contexts.
+
+If you prefer `conda` or `mamba`, you're welcome to adapt the environment setup — just ensure the Quarto CLI and a working Python kernel are available in your environment.
+
+
 ## 📜 License
 
 Quoncierge is licensed under the [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) license. You’re free to share and adapt this work, even commercially, as long as you give appropriate credit.
