@@ -2,6 +2,9 @@
 
 Automate initializing reproducible **Quarto + Jupyter + GitHub** projects.
 
+## ⏩ TLDR Use
+Edit `setup.sh` to add your GitHub details. Run `bash setup.sh <project-name>`, and get to coding in Positron!
+
 ## 🧠 Motivation
 
 I built Quoncierge after beta testing [Positron](https://posit-dev.github.io/positron/), the next-generation IDE from the creators of RStudio. While it supports running R and Python in the same notebook using `.qmd` files, I ran into frustrating limitations when trying to launch a new Quarto project that *just worked* without manual setup and troubleshooting.
@@ -31,7 +34,7 @@ Even though Python + Jupyter + Quarto are all widely used, getting them to work 
 - Quarto projects aren't automatically Git-tracked or linked to GitHub; you need to set that up yourself.
 - IDEs like Positron currently don't infer all this context or register project-local Jupyter kernels automatically.
 
-For newer users, it's not always clear why these steps are required or what breaks when they’re skipped. Quoncierge wraps these tasks into one reproducible setup flow.
+For newer users, it's not always clear why these steps are required or what breaks when they’re skipped. Quoncierge wraps these tasks into one reproducible setup flow that's friendlier to the type of users I typically work with (busy scientists jumping between wet lab experiments and bioinformatics data analysis).
 
 ## 🚀 Usage
 
