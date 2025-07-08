@@ -7,9 +7,9 @@ Edit `setup.sh` to add your GitHub details. Then run `bash setup.sh <project-nam
 
 ## 🧠 Motivation
 
-I built Quoncierge after beta testing [Positron](https://posit-dev.github.io/positron/), the next-generation IDE from the creators of RStudio. While it supports running R and Python in the same notebook using `.qmd` files, I ran into frustrating limitations when trying to launch a new Quarto project that *just worked* without manual setup and troubleshooting.
+I built Quoncierge after beta testing [Positron](https://posit-dev.github.io/positron/). As a long-time Rstudio/Rprojects user switching to .qmd notebooks and Quarto projects, I ran into frustrating limitations when trying to launch a new project that *just worked* without manual setup and troubleshooting.
 
-The current experience for setting up a new Python + Quarto project in Positron is fragmented. Quoncierge automates and smooths over the pain points of environment creation, kernel registration, and GitHub linkage — bringing .qmd notebooks closer to plug-and-play for bioinformatics and data science work.
+The current experience for setting up a new Python + Quarto project in Positron is fragmented. Quoncierge automates and smooths over the pain points of environment creation, kernel registration, and GitHub linkage — bringing .qmd notebooks closer to plug-and-play for data science work, with bioinformatics users in mind.
 
 ## ⚙️ What it does
 
@@ -34,7 +34,7 @@ Even though Python + Jupyter + Quarto are all widely used, getting them to work 
 - Quarto projects aren't automatically Git-tracked or linked to GitHub; you need to set that up yourself.
 - IDEs like Positron currently don't infer all this context or register project-local Jupyter kernels automatically.
 
-For newer users, it's not always clear why these steps are required or what breaks when they’re skipped. Quoncierge wraps these tasks into one reproducible setup flow that's friendlier to the type of users I typically work with. Busy scientists jumping between wet lab experiments and bioinformatics data analysis do not want to add making sense of a kernel/environment/interpreter stack to their to-do list. 
+For newer users, it's not always clear why these steps are required or what breaks when they’re skipped. Quoncierge wraps these tasks into one reproducible setup flow that's friendlier to the type of users I typically work with, who do not want to add making sense of a kernel/environment/interpreter stack to their to-do list. 
 
 ## 🚀 Usage
 
@@ -100,11 +100,12 @@ This project uses Python’s built-in [`venv`](https://docs.python.org/3/library
 If you prefer `conda` or `mamba`, you're welcome to adapt the environment setup — just ensure the Quarto CLI and a working Python kernel are available in your environment.
 
 
-## 📜 License
+## 📜 License, Feedback, and Citations
 
 Quoncierge is licensed under the [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) license. You’re free to share and adapt this work, even commercially, as long as you give appropriate credit.
 
 If you adapt or improve this script for your own workflows, feel free to open a pull request or share a link.
+Quoncierge is under active development as of July 2025, with the expectation that it may end up deprecated as Positron features continue to be built out. If you have a question or a comment, feel free to create an issue.
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15833439.svg)](https://doi.org/10.5281/zenodo.15833439)
 
