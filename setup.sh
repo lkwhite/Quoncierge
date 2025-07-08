@@ -70,7 +70,7 @@ quarto create-project .
 cat <<EOF > README.md
 # $PROJECT_NAME
 
-This project was initialized using \`setup.sh\`.
+This project was initialized using [Quoncierge](https://github.com/lkwhite/Quoncierge) \`setup.sh\`.
 
 ## Getting started
 
