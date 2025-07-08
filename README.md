@@ -75,6 +75,12 @@ Each project will contain:
 - `.quarto/` and `_quarto.yml` — Quarto project metadata
 - GitHub repository — auto-created with remote tracking set
 
+💡 If you install new packages, you can update the environment file with:
+
+```bash
+pip freeze > requirements.txt
+
+
 ## 🧪 Example
 
 ```bash
