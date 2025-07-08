@@ -41,7 +41,7 @@ For newer users, it's not always clear why these steps are required or what brea
 You must have:
 - Python 3
 - GitHub CLI (`gh`) installed and authenticated
-- Quarto CLI installed (`brew install --cask quarto`)
+- Quarto CLI installed (on MacOS: `brew install --cask quarto`; Windows & Linux folks [Quarto instructions here](https://quarto.org/docs/get-started/))
 - (Optional) Positron installed and in your `$PATH`
 
 💡 Tip: To launch the project in Positron from the command line, the positron command must be in your system PATH.
