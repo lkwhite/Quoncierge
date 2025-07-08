@@ -128,7 +128,7 @@ git commit -m "Initial commit"
 
 # === CREATE GITHUB REPO ===
 if command -v gh &> /dev/null; then
-  gh repo create "$GITHUB_USERNAME/$PROJECT_NAME" --source=. --public --push --remote=origin --confirm
+  gh repo create "$GITHUB_USERNAME/$PROJECT_NAME" --source=. --private --push --remote=origin --confirm
 else
   echo "⚠️ GitHub CLI (gh) not found. Skipping GitHub repo creation."
 fi
