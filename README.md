@@ -79,7 +79,7 @@ Each project will contain:
 
 ```bash
 pip freeze > requirements.txt
-
+```
 
 ## 🧪 Example
 
