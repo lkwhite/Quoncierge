@@ -32,7 +32,9 @@
 # ============================================
 
 # === CONFIGURATION ===
-PROJECT_NAME=$1
+RAW_PROJECT_PATH=$1
+PROJECT_NAME=$(basename "$RAW_PROJECT_PATH")
+KERNEL_NAME=$(echo "$PROJECT_NAME" | tr '[:upper:]' '[:lower:]' | tr -c 'a-z0-9._-' '-') # remove disallowed chars
 GITHUB_USERNAME="username"  # CHANGE this to your GitHub username
 GITHUB_EMAIL="youremail@institution.edu"  # CHANGE this to your GitHub-associated email
 OPEN_WITH_POSITRON=true  # Set to false to skip Positron launch
@@ -44,8 +46,8 @@ if [ -z "$PROJECT_NAME" ]; then
 fi
 
 # === CREATE PROJECT DIRECTORY ===
-mkdir "$PROJECT_NAME" || echo "Directory already exists"
-cd "$PROJECT_NAME" || exit 1
+mkdir "$RAW_PROJECT_PATH" || echo "Directory already exists"
+cd "$RAW_PROJECT_PATH" || exit 1
 
 # === SET UP GIT CONFIG ===
 git config --global user.name "$GITHUB_USERNAME"
@@ -65,6 +67,19 @@ python -m ipykernel install --name="$PROJECT_NAME" --display-name="Python ($PROJ
 
 # === INITIALIZE QUARTO PROJECT ===
 quarto create-project .
+
+# === CREATE CUSTOM YML ===
+cat <<EOF > _quarto.yml
+project:
+  type: default
+
+execute:
+  kernel: $KERNEL_NAME
+  freeze: auto
+
+format: html
+title: "$PROJECT_NAME"
+EOF
 
 # === GENERATE README.md ===
 cat <<EOF > README.md
@@ -122,13 +137,18 @@ _publish/
 EOF
 
 # === GIT INIT AND COMMIT ===
-git init
+git init -b main
 git add .
 git commit -m "Initial commit"
 
 # === CREATE GITHUB REPO ===
 if command -v gh &> /dev/null; then
-  gh repo create "$GITHUB_USERNAME/$PROJECT_NAME" --source=. --private --push --remote=origin --confirm
+  gh repo create "$GITHUB_USERNAME/$PROJECT_NAME" \
+    --source=. \
+    --private \
+    --push \
+    --remote=origin \
+    --confirm
 else
   echo "⚠️ GitHub CLI (gh) not found. Skipping GitHub repo creation."
 fi
