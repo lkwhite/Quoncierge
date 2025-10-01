@@ -2,55 +2,72 @@
 
 Automate initializing reproducible **Quarto + Jupyter + GitHub** projects with a simple script.
 
-## ⏩ TLDR Use
+## ⏩ Quick Start
 
-Edit `setup.sh` to add your GitHub details. Then run `bash setup.sh <project-name>`, and get to coding in Positron!
+Quoncierge provides **two setup scripts** depending on your needs:
+
+-   **Light (v0.1 philosophy)** — minimal Quarto + Python + GitHub scaffold
+
+    ```         
+    bash setup_light.sh my-project
+    # or: bash setup.sh my-project   # shim → light
+    ```
+
+    Creates a `.venv`, registers a Jupyter kernel, writes `_quarto.yml`, sets up Git/GitHub, and generates a minimal README.\
+    *Intended if you just want the basics without opinionated structure.*
+
+-   **Full (v0.2-in-progress)** — structured workflow with helpers and automated routing of notebook outputs
+
+    ```         
+    bash setup_full.sh my-project
+    ```
+
+    Adds `notebooks/`, `outputs/`, `bin/qnew`, R/Python helpers, a starter notebook, and a pre-commit hook.\
+    *Intended if you want automatic saving by notebook, reproducibility scaffolding, and convenience helpers.*
 
 ## 🧠 Motivation
 
-Quoncierge is for people who work primarily in **interactive notebooks for exploratory data analysis (EDA)** — often coming from **RStudio / R Projects** — and who don’t want to think about kernels, environments, or GitHub intricacies.
+Quoncierge is for people who work primarily in interactive notebooks for exploratory data analysis (EDA) — often coming from RStudio / R Projects — and who don’t want to wrestle with kernels, environments, or GitHub setup.
 
-Even though Python, R, Jupyter, and Quarto are widely used, making them work *together* usually requires:
+Even though Python, R, Jupyter, and Quarto are widely used, combining them usually requires:
 
--   creating and activating project-local environments
+-   creating project-local environments
 
--   installing Jupyter + registering kernels
+-   registering Jupyter kernels
 
--   configuring Quarto to see those kernels
+-   configuring Quarto to see them
 
--   setting up Git/GitHub with the right ignores and limits
+-   setting up Git/GitHub with the right ignores
 
-For users focused on analysis, this is unnecessary friction.
-
-**Quoncierge automates all of it**: you run one command and get a ready-to-go project with R + Python support, helpers for saving outputs, and a GitHub repo already in place. The design goal is to give you *just enough structure* to stay reproducible without forcing a heavyweight template or deep knowledge of the Python/R/Quarto stack.
-
-Development aims to be **use-case agnostic**, but is informed by the needs of **biologists picking up bioinformatics on the side (and those teaching them)**, where quick reproducibility and low setup overhead are especially important.
+For users focused on analysis, that’s unnecessary friction. Quoncierge automates it: one command, ready-to-go project.
 
 ## ⚙️ What Quoncierge does
 
-Quoncierge is a single script that:
+### Light
 
--   Creates a Quarto-compatible project folder
+-   `.venv/` with core Python packages and local Jupyter kernel
 
--   Sets up a local Python environment (`.venv`) and registers a Jupyter kernel
+-   `_quarto.yml` pinned to that kernel
 
--   Installs core packages for R and Python notebooks
+-   `.gitignore` and `requirements.txt`
 
--   Adds lightweight structure: `notebooks/`, `data/`, `outputs/`
+-   Git initialized and pushed to GitHub (if `gh` installed)
 
--   Generates a starter notebook with working Python + R examples
+### Full (feature additions on top of Light)
 
--   Provides a `bin/qnew` helper to create new notebooks (`YYYYMMDD-slug.qmd`)
+-   `notebooks/`, `data/`, `outputs/`, `bin/` organizational structure by default
 
--   Configures `.gitignore` and a pre-commit hook to block files \>50 MB
+-   Dynamic helpers (`save_plot`, `savetbl`, `log`, etc.) auto-routing outputs by notebook stem
 
--   Initializes Git and pushes a private GitHub repo
+-   Starter notebook (`YYYYMMDD-init-analysis.qmd`) with examples
 
--   (Optionally) launches the project in [Positron](https://posit-dev.github.io/positron/)
+-   `bin/qnew` to automate new notebook creation
+
+-   Pre-commit hook to block files \>50 MB in `outputs/` (preventing large file issues with GitHub)
 
 ## 🚀 Usage
 
-You must have:
+Requirements:
 
 -   Python 3
 
@@ -64,42 +81,75 @@ You must have:
 
 Clone this repo:
 
-``` bash
+```         
 git clone https://github.com/lkwhite/Quoncierge.git
 cd Quoncierge
 ```
 
-Edit the top of setup.sh to insert your GitHub username and email.
+Set your GitHub username/email in the script, then run either `setup_light.sh` or `setup_full.sh`.
 
-Then run
+## 🧪 Example Usage
 
-``` bash
-bash setup.sh <project-name>
+### Light
+
+```         
+bash setup_light.sh my-analysis-project
+# or: bash setup.sh my-analysis-project
 ```
 
-This creates a new folder with the given name, initializes the project, and (if positron is in your path) launches it directly.
+Creates a folder `my-analysis-project/` with:
 
-## 📁 Output Files
+```         
+.venv/           # Python environment
+_quarto.yml      # kernel pinned
+requirements.txt # pinned environment
+README.md        # minimal scaffold
+.gitignore
+```
 
-New Quoncierge projects contain:
+You can start adding notebooks manually (`notebooks/` is not created for you in Light mode).
 
--   `.venv/` — project-local Python environment
+------------------------------------------------------------------------
 
--   `notebooks/` — your analysis notebooks (`YYYYMMDD-slug.qmd`)
+### Full
 
-    -   includes `_helpers.py` and `_helpers.R` (save helpers)
+```         
+bash setup_full.sh my-analysis-project
+```
 
-    -   includes `_metadata.yml` (default execution options)
+Creates a folder `my-analysis-project/` with:
 
--   `data/` — raw and intermediate data (ignored by git)
+```         
+.venv/
+notebooks/
+  YYYYMMDD-init-analysis.qmd   # starter notebook
+  _quoncierge/                 # helpers + templates
+data/                          # ignored by git
+outputs/                       # auto-routed per notebook
+bin/qnew                       # helper to create new notebooks
+_quarto.yml
+requirements.txt
+README.md
+.gitignore
+.git/hooks/pre-commit
+```
 
--   `outputs/` — auto-organized results for each notebook (`figures/`, `tables/`, `artifacts/`, `logs/`)
+Inside `notebooks/YYYYMMDD-init-analysis.qmd` you’ll find working R + Python examples.\
+Running it will generate outputs in:
 
--   `bin/qnew` — helper script to create new notebooks with date + slug naming
+```         
+outputs/YYYYMMDD-init-analysis/{figures,tables,artifacts,logs}
+```
 
--   `.gitignore`, `README.md`, `requirements.txt`, `_quarto.yml` — project metadata and configuration
+To add more notebooks, use the `qnew` helper:
 
--   GitHub repository — auto-created with remote tracking
+```         
+bin/qnew baseline-qc        # R by default
+bin/qnew --py feature-scan  # Python
+bin/qnew --r qc-report      # R
+```
+
+Each notebook saves its figures, tables, artifacts, and logs into a matching subfolder under `outputs/`.
 
 ## 🛠 Customizing Your Setup
 
@@ -114,38 +164,6 @@ You can edit `setup.sh` to:
 ``` bash
 pip freeze > requirements.txt
 ```
-
-## 🧪 Example
-
-Initialize a new project:
-
-```         
-bash setup.sh my-analysis-project
-```
-
-This creates a folder `my-analysis-project/` with Quarto + Jupyter set up, pushes it to GitHub, and opens it in Positron (if installed and on your `$PATH`).
-
-Inside you’ll find a starter notebook:
-
-```         
-notebooks/YYYYMMDD-init-analysis.qmd
-```
-
-Running it will generate example outputs in:
-
-```         
-outputs/YYYYMMDD-init-analysis/{figures,tables,artifacts,logs}
-```
-
-To add more notebooks, use the `qnew` helper:
-
-```         
-bin/qnew baseline-qc        # creates notebooks/YYYYMMDD-baseline-qc.qmd (R by default)
-bin/qnew --py feature-scan  # creates a Python notebook
-bin/qnew --r qc-report      # creates an R notebook
-```
-
-Each notebook automatically saves its figures, tables, artifacts, and logs to a matching subfolder under `outputs/`.
 
 ## 🤔Why venv instead of conda/mamba?
 
